@@ -30,6 +30,7 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   int _quantity = 0;
   late TextEditingController _notesController;
+  String _selectedItem = 'Footlong';
 
   @override
   void initState() {
@@ -65,9 +66,28 @@ class _OrderScreenState extends State<OrderScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // Dropdown to choose sandwich size/type
+            SizedBox(
+              width: 200,
+              child: DropdownButton<String>(
+                value: _selectedItem,
+                isExpanded: true,
+                items: const [
+                  DropdownMenuItem(value: 'Footlong', child: Text('Footlong')),
+                  DropdownMenuItem(value: 'Six-inch', child: Text('Six-inch')),
+                ],
+                onChanged: (value) {
+                  if (value == null) return;
+                  setState(() {
+                    _selectedItem = value;
+                  });
+                },
+              ),
+            ),
+            const SizedBox(height: 8),
             OrderItemDisplay(
               _quantity,
-              'Footlong',
+              _selectedItem,
             ),
             const SizedBox(height: 12),
             // Notes input field for special requests
