@@ -69,36 +69,23 @@ class _OrderScreenState extends State<OrderScreen> {
               _quantity,
               'Footlong',
             ),
-            const SizedBox(height: 16),
-            // Notes input field
-            SizedBox(
-              width: 300,
-              child: TextField(
-                controller: _notesController,
-                decoration: InputDecoration(
-                  hintText: 'Special requests (e.g., no onions, extra pickles)',
-                  border: OutlineInputBorder(),
-                ),
-                maxLines: 2,
-              ),
-            ),
-            const SizedBox(height: 16),
-            // Display entered notes
-            if (_notesController.text.isNotEmpty)
-              Text(
-                'Notes: ${_notesController.text}',
-                style: const TextStyle(fontStyle: FontStyle.italic),
-              ),
-            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: _increaseQuantity,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white,
+                  ),
                   child: const Text('Add'),
                 ),
                 ElevatedButton(
                   onPressed: _decreaseQuantity,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                  ),
                   child: const Text('Remove'),
                 ),
               ],
