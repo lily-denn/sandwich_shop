@@ -69,6 +69,34 @@ class _OrderScreenState extends State<OrderScreen> {
               _quantity,
               'Footlong',
             ),
+            const SizedBox(height: 12),
+            // Notes input field for special requests
+            SizedBox(
+              width: 320,
+              child: TextField(
+                controller: _notesController,
+                maxLines: 2,
+                decoration: InputDecoration(
+                  labelText: 'Extra notes',
+                  hintText: 'e.g. no onions, extra pickles',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+                onChanged: (value) => setState(() {}),
+              ),
+            ),
+            const SizedBox(height: 8),
+            // Live preview of entered notes
+            if (_notesController.text.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Text(
+                  'Notes: ${_notesController.text}',
+                  style: const TextStyle(fontStyle: FontStyle.italic),
+                ),
+              ),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
